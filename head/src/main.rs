@@ -1,9 +1,6 @@
-pub fn run(config: Config) -> MyResult<()> {
-    for filename in config.files {
-        match open(&filename) {
-            Err(err) => eprintln!("{}: {}", filename, err),
-            Ok(_) => println!("Opened {}", filename),
-        }
+fn main() {
+    if let Err(e) = head::get_args().and_then(head::run) {
+        eprintln!("{}", e);
+        std::process::exit(1);
     }
-    Ok(())
 }
